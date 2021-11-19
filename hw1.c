@@ -85,12 +85,19 @@ void handle_socket(SOCKET client)
         fdIMG=open(&buf[5], O_RDONLY);
 
         sprintf(buf, "HTTP/1.0 200 OK\r\nContent-Type: %s\r\n\r\n", fstr);
-        //write(client, buf, strlen(buf));
+        write(client, buf, strlen(buf));
 
         while ((ret = read(fdIMG, buf, 2047))>0) {
-            write(client, buf, strlen(buf));
+            write(client, buf, ret);
         }
     }
+
+    /*if ( (!strncmp(buf,"POST ",5)) || (!strncmp(buf,"POST ",5)) ){
+        while(recv(client, buf, sizeof(buf), MSG_DONTWAIT) > 0){
+            printf("pos: %s\n", buf);
+            memset(buf, 0, sizeof(buf));
+        }
+    }*/
 
     close(client);
     printf("close...\n");
