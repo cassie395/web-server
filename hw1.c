@@ -103,11 +103,6 @@ void handle_socket(SOCKET client)
     printf("close...\n");
 }
 
-void handle_socket_recv(SOCKET recv)
-{
-
-}
-
 
 int main(int argc, char *argv[])
 {
