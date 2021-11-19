@@ -92,13 +92,6 @@ void handle_socket(SOCKET client)
         }
     }
 
-    if ( (!strncmp(buf,"POST ",5)) || (!strncmp(buf,"POST ",5)) ){
-        while(recv(client, buf, sizeof(buf), MSG_DONTWAIT) > 0){
-            printf("pos: %s\n", buf);
-            memset(buf, 0, sizeof(buf));
-        }
-    }
-
     close(client);
     printf("close...\n");
 }
